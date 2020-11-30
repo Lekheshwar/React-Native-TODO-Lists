@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   StyleSheet,
@@ -6,16 +5,33 @@ import {
   TouchableOpacity,
   View,
   FlatList,
+  Modal,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import Colors from "./Colors";
 import TodoList from "./components/TodoList";
 import tempData from "./tempData";
+import AddListModal from "./components/AddListModal";
 
 export default class App extends React.Component {
+  state = {
+    addTodoVisible: false,
+  };
+
+  toggleTodoModal = () => {
+    this.setState({ addTodoVisible: !this.state.addTodoVisible });
+  };
+
   render() {
     return (
       <View style={styles.container}>
+        <Modal
+          animationType="slide"
+          visible={this.state.addTodoVisible}
+          onRequestClose={() => this.toggleTodoModal()}
+        >
+          <AddListModal />
+        </Modal>
         <View style={{ flexDirection: "row" }}>
           <View style={styles.divider}></View>
           <Text style={styles.title}>
@@ -28,7 +44,7 @@ export default class App extends React.Component {
         </View>
 
         <View style={{ marginVertical: 40 }}>
-          <TouchableOpacity style={styles.addList}>
+          <TouchableOpacity style={styles.addList} onPress={() => this.toggleTodoModal()}>
             <AntDesign name="plus" size={20} color={Colors.white} />
           </TouchableOpacity>
         </View>
