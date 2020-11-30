@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import Colors from "./Colors";
+import TodoList from "./components/TodoList";
+import tempData from "./tempData";
 
 export default class App extends React.Component {
   render() {
@@ -29,6 +31,16 @@ export default class App extends React.Component {
           <TouchableOpacity style={styles.addList}>
             <AntDesign name="plus" size={20} color={Colors.white} />
           </TouchableOpacity>
+        </View>
+
+        <View style={{ height: 265, paddingLeft: 32 }}>
+          <FlatList
+            data={tempData}
+            keyExtractor={(item) => item.name}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({ item }) => <TodoList list={item} />}
+          />
         </View>
       </View>
     );

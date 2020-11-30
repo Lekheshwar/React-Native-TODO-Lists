@@ -5,19 +5,41 @@ export default tempData = [
         todos: [
             {
                 title: "Book A flight",
-                conpleted: flase
+                completed: false
             },
             {
                 title: "Passport Check",
-                conpleted: flase
+                completed: false
             },
             {
                 title: "Reserve Hotel Rooms",
-                conpleted: true
+                completed: true
             },
             {
                 title: "Pack Luggage",
-                conpleted: true
+                completed: true
+            }
+        ]
+    },
+    {
+        name : "Plan a Trsdafip",
+        color : "#64A629",
+        todos: [
+            {
+                title: "Bsdafht",
+                completed: false
+            },
+            {
+                title: "Pafsdk",
+                completed: false
+            },
+            {
+                title: "RfaRooms",
+                completed: true
+            },
+            {
+                title: "Pafae",
+                completed: false
             }
         ]
     }
