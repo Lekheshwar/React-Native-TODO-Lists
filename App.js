@@ -22,6 +22,10 @@ export default class App extends React.Component {
     this.setState({ addTodoVisible: !this.state.addTodoVisible });
   };
 
+  renderList = list => {
+    return <TodoList list = {list} />
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -30,13 +34,13 @@ export default class App extends React.Component {
           visible={this.state.addTodoVisible}
           onRequestClose={() => this.toggleTodoModal()}
         >
-          <AddListModal />
+          <AddListModal closeModal = {() => this.toggleTodoModal() } />
         </Modal>
         <View style={{ flexDirection: "row" }}>
           <View style={styles.divider}></View>
           <Text style={styles.title}>
             TODO{" "}
-            <Text style={{ fontWeight: "900", color: Colors.blue }}>
+            <Text style={{ fontWeight: "100", color: Colors.blue }}>
               Lists{" "}
             </Text>
           </Text>
@@ -55,7 +59,7 @@ export default class App extends React.Component {
             keyExtractor={(item) => item.name}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => <TodoList list={item} />}
+            renderItem={({ item }) => this.renderList(item)}
           />
         </View>
       </View>
@@ -78,7 +82,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 40,
-    fontWeight: "900",
+    fontWeight: "bold",
     color: Colors.black,
     paddingHorizontal: 30,
   },
