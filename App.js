@@ -49,7 +49,7 @@ export default class App extends React.Component {
 
         <View style={{ marginVertical: 40 }}>
           <TouchableOpacity style={styles.addList} onPress={() => this.toggleTodoModal()}>
-            <AntDesign name="plus" size={20} color={Colors.white} />
+            <AntDesign name="plus"  size={22} color={Colors.white} />
           </TouchableOpacity>
         </View>
 

@@ -21,7 +21,6 @@ export default class TodoList extends React.Component {
 
     return (
       <View>
-        
         <Modal
           animationType="slide"
           visible={this.state.showListVisible}
@@ -51,8 +50,6 @@ export default class TodoList extends React.Component {
           </View>
           
         </TouchableOpacity>
-
-        
       </View>
     );
   }

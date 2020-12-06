@@ -18,6 +18,22 @@ export default tempData = [
             {
                 title: "Pack Luggage",
                 completed: true
+            },
+            {
+                title: "Book A flidfasght",
+                completed: false
+            },
+            {
+                title: "Passport Cfasdheck",
+                completed: false
+            },
+            {
+                title: "Reserve Hodasftel Rooms",
+                completed: true
+            },
+            {
+                title: "Pack Luggaasdfge",
+                completed: true
             }
         ]
     },
