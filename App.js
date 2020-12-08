@@ -6,6 +6,7 @@ import {
   View,
   FlatList,
   Modal,
+  Dimensions
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import Colors from "./Colors";
@@ -13,18 +14,23 @@ import TodoList from "./components/TodoList";
 import tempData from "./tempData";
 import AddListModal from "./components/AddListModal";
 
+const numOfColumn = 2;
+const WIDTH = Dimensions.get('window').width;
+
 export default class App extends React.Component {
   state = {
     addTodoVisible: false,
     lists: tempData
   };
 
+ 
+
   toggleTodoModal = () => {
     this.setState({ addTodoVisible: !this.state.addTodoVisible });
   };
 
   renderList = list => {
-    return <TodoList list = {list}  updateList = {this.updateList}/>
+    return <TodoList list = {list}  updateList = {this.updateList} />
   }
 
   addList = list => {
@@ -49,7 +55,7 @@ export default class App extends React.Component {
         >
           <AddListModal closeModal = {() => this.toggleTodoModal() } addList = {this.addList} />
         </Modal>
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flex: 1, flexDirection: "row" , alignItems:"center"}}>
           <View style={styles.divider}></View>
           <Text style={styles.title}>
             TODO{" "}
@@ -60,23 +66,26 @@ export default class App extends React.Component {
           <View style={styles.divider}></View>
         </View>
 
-        <View style={{ marginVertical: 40 }}>
+        
+
+        <View style={{ flex: 9}}>
+          <FlatList
+            data={this.state.lists}
+            keyExtractor={(item) => item.name}
+            renderItem={({ item }) => this.renderList(item)}
+            numColumns={numOfColumn}
+            keyboardShouldPersistTaps="always"
+          />
+        </View>
+
+        <View style={{position:"absolute", right:20, bottom : 20 }}>
           <TouchableOpacity style={styles.addList} onPress={() => this.toggleTodoModal()}>
             <AntDesign name="plus"  size={22} color={Colors.white} />
           </TouchableOpacity>
         </View>
 
-        <View style={{ height: 265, paddingLeft: 32 }}>
-          <FlatList
-            data={this.state.lists}
-            keyExtractor={(item) => item.name}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => this.renderList(item)}
-            keyboardShouldPersistTaps="always"
-          />
         </View>
-      </View>
+      
     );
   }
 }
@@ -84,13 +93,14 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#FFF",
+    marginTop: 40,
     alignItems: "center",
     justifyContent: "center",
   },
   divider: {
     backgroundColor: Colors.lightBlue,
-    height: 1,
+    height: 2,
     flex: 1,
     alignSelf: "center",
   },
@@ -98,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
     color: Colors.black,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
   },
   addList: {
     borderWidth: 2,
@@ -108,5 +118,6 @@ const styles = StyleSheet.create({
     padding: 16,
     alignItems: "center",
     justifyContent: "center",
-  },
+  }
+  
 });

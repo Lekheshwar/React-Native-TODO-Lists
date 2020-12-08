@@ -1,8 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View, Modal, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Modal, TouchableOpacity, Dimensions } from "react-native";
 import Colors from "../Colors";
 import TodoModal from "./TodoModal";
 
+
+const WIDTH = Dimensions.get('window').width;
 export default class TodoList extends React.Component {
 
   state = {
@@ -57,12 +59,13 @@ export default class TodoList extends React.Component {
 
 const styles = StyleSheet.create({
   listContainer: {
-    paddingVertical: 32,
-    paddingHorizontal: 16,
-    borderRadius: 6,
-    marginHorizontal: 32,
+    paddingVertical: 26,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    marginHorizontal: 2,
+    marginVertical: 2,
     alignItems: "center",
-    width: 200,
+    width: WIDTH/2 - 4 ,
   },
   listTitle: {
     fontSize: 24,
@@ -71,12 +74,12 @@ const styles = StyleSheet.create({
     marginBottom: 18,
   },
   count: {
-    fontSize: 48,
+    fontSize: 26,
     fontWeight: "200",
     color: Colors.white,
   },
   subtitle: {
-    fontSize: 12,
+    fontSize:12,
     fontWeight: "200",
     color: Colors.white,
   },

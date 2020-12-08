@@ -57,7 +57,7 @@ export default class AddListModal extends React.Component {
           style={{ position: "absolute", top: 64, right: 32 }}
           onPress={this.props.closeModal}
         >
-          <AntDesign name="close" size={24} color={Colors.black} />
+          <AntDesign name="close" size={30} color={Colors.black} />
         </TouchableOpacity>
 
         <View style={{ alignSelf: "center", marginHorizontal: 32 }}>
@@ -129,6 +129,6 @@ const styles = StyleSheet.create({
   colorSelect: {
     width: 30,
     height: 30,
-    borderRadius: 4,
+    borderRadius: 6,
   },
 });

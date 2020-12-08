@@ -73,7 +73,7 @@ export default class TodoModal extends React.Component {
             style={{ position: "absolute", top: 64, right: 32, zIndex: 10 }}
             onPress={this.props.closeModal}
           >
-            <AntDesign name="close" size={24} color={Colors.black} />
+            <AntDesign name="close" size={30} color={Colors.black} />
           </TouchableOpacity>
 
           <View
@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#FFF"
   },
   section: {
     flex: 1,
