@@ -17,22 +17,23 @@ export default class TodoModal extends React.Component {
     newTodo: "",
   };
 
-
-  toggleTodoCompleted = index => {
+  toggleTodoCompleted = (index) => {
     let list = this.props.list;
     list.todos[index].completed = !list.todos[index].completed;
     this.props.updateList(list);
-  }
+  };
 
   addTodo = () => {
-    let list = this.props.list
-    list.todos.push({title: this.state.newTodo, completed: false});
+    if (this.state.newTodo === "") return;
+
+    let list = this.props.list;
+    list.todos.push({ title: this.state.newTodo, completed: false });
 
     this.props.updateList(list);
-    this.setState({newTodo : ""});
+    this.setState({ newTodo: "" });
 
     Keyboard.dismiss();
-  }
+  };
 
   renderTodo = (todo, index) => {
     return (
@@ -67,7 +68,10 @@ export default class TodoModal extends React.Component {
     const completedCount = list.todos.filter((todo) => todo.completed).length;
 
     return (
-      <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === "ios" ? "padding" : null}>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : null}
+      >
         <View style={styles.conatiner}>
           <TouchableOpacity
             style={{ position: "absolute", top: 64, right: 32, zIndex: 10 }}
@@ -94,8 +98,8 @@ export default class TodoModal extends React.Component {
           <View style={[styles.section, { flex: 3 }]}>
             <FlatList
               data={list.todos}
-              renderItem={({ item , index}) => this.renderTodo(item, index)}
-              keyExtractor={(item) => item.title}
+              renderItem={({ item, index }) => this.renderTodo(item, index)}
+              keyExtractor={(index) => index.toString()}
               contentContainerStyle={{
                 paddingHorizontal: 32,
                 paddingVertical: 64,
@@ -105,7 +109,11 @@ export default class TodoModal extends React.Component {
           </View>
 
           <View style={[styles.section, styles.footer]}>
-            <TextInput style={[styles.input, { borderColor: list.color }]} onChangeText={text => this.setState({newTodo: text})} value={this.state.newTodo} />
+            <TextInput
+              style={[styles.input, { borderColor: list.color }]}
+              onChangeText={(text) => this.setState({ newTodo: text })}
+              value={this.state.newTodo}
+            />
             <TouchableOpacity
               style={[styles.addTodo, { backgroundColor: list.color }]}
               onPress={() => this.addTodo()}
@@ -124,7 +132,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#FFF"
+    backgroundColor: "#FFF",
   },
   section: {
     flex: 1,
